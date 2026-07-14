@@ -1,748 +1,1306 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Mubasher Munir — Principal Engineer, Frontend Architecture</title>
-<meta name="description" content="Mubasher Munir — Principal Engineer Consultant, full-stack (Angular &amp; .NET Core), across supply chain, healthcare, AI document automation, RPA, and identity platforms.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#0A0F1C;
-    --panel:#111A2C;
-    --panel-2:#0D1526;
-    --line:#233052;
-    --line-soft:#1A2540;
-    --text:#E8ECF6;
-    --text-dim:#8E9BC0;
-    --text-faint:#5B6788;
-    --amber:#F5A623;
-    --amber-dim:#8A6423;
-    --teal:#4FD1C5;
-    --teal-dim:#2C6F69;
-    --radius:6px;
-    --wrap:1160px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Mubasher Munir — Principal Engineer, Frontend Architecture</title>
+  <meta name="description"
+    content="Mubasher Munir — Principal Engineer Consultant, full-stack (Angular &amp; .NET Core), across supply chain, healthcare, AI document automation, RPA, and identity platforms.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0A0F1C;
+      --panel: #111A2C;
+      --panel-2: #0D1526;
+      --line: #233052;
+      --line-soft: #1A2540;
+      --text: #E8ECF6;
+      --text-dim: #8E9BC0;
+      --text-faint: #5B6788;
+      --amber: #F5A623;
+      --amber-dim: #8A6423;
+      --teal: #4FD1C5;
+      --teal-dim: #2C6F69;
+      --radius: 6px;
+      --wrap: 1160px;
+    }
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  body{
-    margin:0;
-    background:
-      radial-gradient(1100px 620px at 82% -8%, rgba(79,209,197,0.08), transparent 60%),
-      radial-gradient(900px 500px at 8% 0%, rgba(245,166,35,0.07), transparent 55%),
-      var(--ink);
-    color:var(--text);
-    font-family:'Inter', sans-serif;
-    -webkit-font-smoothing:antialiased;
-    line-height:1.6;
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  ::selection{background:var(--amber); color:#0A0F1C;}
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
 
-  a{color:inherit;}
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
 
-  .mono{font-family:'IBM Plex Mono', monospace;}
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1100px 620px at 82% -8%, rgba(79, 209, 197, 0.08), transparent 60%),
+        radial-gradient(900px 500px at 8% 0%, rgba(245, 166, 35, 0.07), transparent 55%),
+        var(--ink);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
 
-  .wrap{max-width:var(--wrap); margin:0 auto; padding:0 32px;}
+    ::selection {
+      background: var(--amber);
+      color: #0A0F1C;
+    }
 
-  .grid-bg{
-    background-image:
-      linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
-    background-size:42px 42px;
-  }
+    a {
+      color: inherit;
+    }
 
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11.5px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--teal);
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:6px; height:6px; border-radius:50%;
-    background:var(--teal);
-    box-shadow:0 0 0 3px rgba(79,209,197,0.18);
-    flex:none;
-  }
+    .mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
 
-  h1,h2,h3{font-family:'Space Grotesk', sans-serif; margin:0; font-weight:600; letter-spacing:-0.01em;}
+    .wrap {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
 
-  /* ---------- NAV ---------- */
-  header.site{
-    position:sticky; top:0; z-index:50;
-    background:rgba(10,15,28,0.82);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line-soft);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 32px;
-    max-width:var(--wrap); margin:0 auto;
-  }
-  .nav-id{
-    display:flex; align-items:center; gap:10px;
-    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--text-dim);
-  }
-  .nav-id .dot{width:8px; height:8px; border-radius:50%; background:var(--amber); box-shadow:0 0 8px var(--amber);}
-  .nav-id b{color:var(--text); font-weight:600;}
-  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
-  .nav-links a{
-    font-size:13.5px; color:var(--text-dim); text-decoration:none;
-    font-family:'IBM Plex Mono', monospace; letter-spacing:0.02em;
-    transition:color .15s ease;
-  }
-  .nav-links a:hover{color:var(--amber);}
-  .nav-cta{
-    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
-    padding:9px 16px; border-radius:4px;
-    border:1px solid var(--amber-dim);
-    color:var(--amber); text-decoration:none;
-    transition:all .15s ease; white-space:nowrap;
-  }
-  .nav-cta:hover{background:var(--amber); color:#0A0F1C; border-color:var(--amber);}
-  .nav-toggle{display:none;}
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+      background-size: 42px 42px;
+    }
 
-  @media(max-width:820px){
-    .nav-links{display:none;}
-  }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    padding:88px 0 64px;
-    position:relative;
-    overflow:hidden;
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr 0.95fr;
-    gap:40px;
-    align-items:center;
-  }
-  .status-row{
-    display:flex; gap:10px; flex-wrap:wrap; margin-bottom:22px;
-  }
-  .status-chip{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11.5px; letter-spacing:0.04em;
-    padding:6px 11px; border-radius:4px;
-    border:1px solid var(--line);
-    background:var(--panel-2);
-    color:var(--text-dim);
-    display:flex; align-items:center; gap:7px;
-  }
-  .status-chip .led{width:6px; height:6px; border-radius:50%; background:var(--teal); box-shadow:0 0 6px var(--teal);}
+    .eyebrow::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 3px rgba(79, 209, 197, 0.18);
+      flex: none;
+    }
 
-  .hero h1{
-    font-size:clamp(2.4rem, 4.6vw, 3.6rem);
-    line-height:1.05;
-    color:var(--text);
-  }
-  .hero h1 span{color:var(--amber);}
-  .hero .role-line{
-    margin-top:14px;
-    font-size:clamp(1.05rem, 1.6vw, 1.25rem);
-    color:var(--text-dim);
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:500;
-  }
-  .hero p.lede{
-    margin-top:20px;
-    max-width:52ch;
-    color:var(--text-dim);
-    font-size:15.5px;
-  }
-  .hero-cta{
-    display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;
-  }
-  .btn{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:13px;
-    padding:13px 22px;
-    border-radius:5px;
-    text-decoration:none;
-    display:inline-flex; align-items:center; gap:8px;
-    transition:all .15s ease;
-    border:1px solid transparent;
-  }
-  .btn-primary{background:var(--amber); color:#0A0F1C; font-weight:600;}
-  .btn-primary:hover{background:#ffb84d; transform:translateY(-1px);}
-  .btn-ghost{border-color:var(--line); color:var(--text);}
-  .btn-ghost:hover{border-color:var(--teal); color:var(--teal);}
+    h1,
+    h2,
+    h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
 
-  .hero-links{margin-top:26px; display:flex; gap:20px; font-family:'IBM Plex Mono', monospace; font-size:12.5px;}
-  .hero-links a{color:var(--text-faint); text-decoration:none; border-bottom:1px solid transparent;}
-  .hero-links a:hover{color:var(--teal); border-color:var(--teal);}
+    /* ---------- NAV ---------- */
+    header.site {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10, 15, 28, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line-soft);
+    }
 
-  /* diagram */
-  .diagram-wrap{
-    position:relative;
-    aspect-ratio:1/1;
-    max-width:520px;
-    margin:0 auto;
-  }
-  .diagram-wrap svg{width:100%; height:100%; overflow:visible;}
-  .node-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:10.5px;
-    fill:var(--text-dim);
-    letter-spacing:0.02em;
-  }
-  .node-sub{font-size:8.5px; fill:var(--text-faint);}
-  .hub-text{font-family:'Space Grotesk', sans-serif; font-size:13px; fill:var(--text); font-weight:600;}
-  .hub-text-sub{font-family:'IBM Plex Mono', monospace; font-size:8.5px; fill:var(--amber); letter-spacing:0.08em;}
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      max-width: var(--wrap);
+      margin: 0 auto;
+    }
 
-  /* ---------- SECTION shell ---------- */
-  section{padding:84px 0;}
-  .section-head{margin-bottom:44px; max-width:640px;}
-  .section-head h2{font-size:clamp(1.6rem, 2.6vw, 2.1rem); margin-top:10px;}
-  .section-head p{color:var(--text-dim); margin-top:12px; font-size:15px;}
-  .divider{border:none; border-top:1px solid var(--line-soft); margin:0;}
+    .nav-id {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
 
-  /* ---------- ABOUT ---------- */
-  .about-grid{
-    display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start;
-  }
-  .about-copy p{color:var(--text-dim); font-size:15.5px; margin:0 0 16px;}
-  .about-copy strong{color:var(--text); font-weight:600;}
-  .stat-panel{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:26px;
-  }
-  .stat-row{
-    display:flex; justify-content:space-between; align-items:baseline;
-    padding:14px 0; border-bottom:1px solid var(--line-soft);
-  }
-  .stat-row:last-child{border-bottom:none;}
-  .stat-num{font-family:'Space Grotesk', sans-serif; font-size:1.5rem; color:var(--amber); font-weight:700;}
-  .stat-label{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--text-dim); text-align:right;}
+    .nav-id .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+    }
 
-  /* ---------- SKILLS ---------- */
-  .modules{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
-  }
-  .module{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:22px;
-  }
-  .module-head{
-    display:flex; justify-content:space-between; align-items:center;
-    margin-bottom:16px;
-    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.08em;
-    color:var(--text-faint); text-transform:uppercase;
-  }
-  .module h3{font-size:1rem; color:var(--text); margin-bottom:2px;}
-  .module-status{color:var(--teal);}
-  .tag-list{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px;}
-  .tag{
-    font-family:'IBM Plex Mono', monospace; font-size:11px;
-    padding:5px 9px; border-radius:4px;
-    background:var(--panel-2); border:1px solid var(--line-soft);
-    color:var(--text-dim);
-  }
-  .tag.lead{color:var(--amber); border-color:var(--amber-dim);}
+    .nav-id b {
+      color: var(--text);
+      font-weight: 600;
+    }
 
-  @media(max-width:980px){.modules{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:600px){.modules{grid-template-columns:1fr;}}
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* ---------- EXPERIENCE ---------- */
-  .timeline{position:relative; padding-left:32px;}
-  .timeline::before{
-    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
-    background:linear-gradient(var(--teal), var(--line) 85%);
-  }
-  .tl-item{position:relative; padding-bottom:44px;}
-  .tl-item:last-child{padding-bottom:0;}
-  .tl-dot{
-    position:absolute; left:-32px; top:4px;
-    width:11px; height:11px; border-radius:50%;
-    background:var(--ink); border:2px solid var(--teal);
-  }
-  .tl-item.current .tl-dot{background:var(--amber); border-color:var(--amber); box-shadow:0 0 0 4px rgba(245,166,35,0.15);}
-  .tl-meta{
-    display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
-    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-faint);
-    margin-bottom:6px;
-  }
-  .tl-meta .yrs{color:var(--teal);}
-  .tl-item.current .tl-meta .yrs{color:var(--amber);}
-  .tl-item h3{font-size:1.15rem; color:var(--text);}
-  .tl-item .company{color:var(--text-dim); font-size:14px; font-weight:500; font-family:'Space Grotesk',sans-serif;}
-  .tl-item ul{margin:14px 0 0; padding-left:18px; color:var(--text-dim); font-size:14.5px;}
-  .tl-item li{margin-bottom:7px;}
-  .tl-item li::marker{color:var(--teal);}
+    .nav-links a {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.02em;
+      transition: color .15s ease;
+    }
 
-  /* ---------- PROJECTS ---------- */
-  .proj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-  .proj-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:24px; display:flex; flex-direction:column; height:100%;
-    transition:border-color .15s ease, transform .15s ease;
-  }
-  .proj-card:hover{border-color:var(--teal-dim); transform:translateY(-2px);}
-  .proj-tag{
-    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.08em;
-    color:var(--amber); text-transform:uppercase; margin-bottom:10px;
-  }
-  .proj-card h3{font-size:1.05rem; margin-bottom:10px; color:var(--text);}
-  .proj-card p{color:var(--text-dim); font-size:13.8px; margin:0 0 14px; flex:1;}
-  .proj-stack{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;}
-  .proj-stack span{
-    font-family:'IBM Plex Mono', monospace; font-size:10px;
-    padding:4px 8px; border-radius:3px;
-    background:var(--panel-2); color:var(--text-faint); border:1px solid var(--line-soft);
-  }
-  .proj-role{
-    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--teal);
-    padding-top:12px; border-top:1px solid var(--line-soft);
-  }
-  .proj-card.wide{grid-column:span 3;}
-  @media(max-width:980px){
-    .proj-grid{grid-template-columns:repeat(2,1fr);}
-    .proj-card.wide{grid-column:span 2;}
-  }
-  @media(max-width:640px){
-    .proj-grid{grid-template-columns:1fr;}
-    .proj-card.wide{grid-column:span 1;}
-  }
+    .nav-links a:hover {
+      color: var(--amber);
+    }
 
-  /* ---------- EDUCATION ---------- */
-  .edu-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
-  .edu-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px;
-  }
-  .edu-card .yrs{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--teal);}
-  .edu-card h3{margin-top:8px; font-size:1.05rem;}
-  .edu-card .school{color:var(--text-dim); font-size:13.5px; margin-top:4px; font-family:'Space Grotesk',sans-serif;}
-  .edu-card p.thesis{color:var(--text-faint); font-size:13px; margin-top:12px; padding-top:12px; border-top:1px solid var(--line-soft);}
-  @media(max-width:700px){.edu-grid{grid-template-columns:1fr;}}
+    .nav-cta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      padding: 9px 16px;
+      border-radius: 4px;
+      border: 1px solid var(--amber-dim);
+      color: var(--amber);
+      text-decoration: none;
+      transition: all .15s ease;
+      white-space: nowrap;
+    }
 
-  /* ---------- CONTACT / FOOTER ---------- */
-  footer{
-    border-top:1px solid var(--line-soft);
-    padding:70px 0 40px;
-  }
-  .contact-grid{
-    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:end;
-    padding-bottom:44px; border-bottom:1px solid var(--line-soft);
-  }
-  .contact-grid h2{font-size:clamp(1.7rem,3vw,2.3rem);}
-  .contact-grid p{color:var(--text-dim); margin-top:14px; max-width:46ch; font-size:15px;}
-  .contact-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
-  .contact-list li{display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', monospace; font-size:13.5px; border-bottom:1px solid var(--line-soft); padding-bottom:14px;}
-  .contact-list li:last-child{border-bottom:none; padding-bottom:0;}
-  .contact-list .k{color:var(--text-faint); text-transform:uppercase; font-size:10.5px; letter-spacing:0.08em;}
-  .contact-list a{text-decoration:none; color:var(--text);}
-  .contact-list a:hover{color:var(--amber);}
-  .foot-bottom{
-    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
-    padding-top:26px; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--text-faint);
-  }
-  .foot-bottom a{color:var(--text-faint); text-decoration:none;}
-  .foot-bottom a:hover{color:var(--teal);}
+    .nav-cta:hover {
+      background: var(--amber);
+      color: #0A0F1C;
+      border-color: var(--amber);
+    }
 
-  @media(max-width:900px){
-    .hero-grid{grid-template-columns:1fr;}
-    .diagram-wrap{max-width:400px; margin-top:20px;}
-    .about-grid{grid-template-columns:1fr;}
-    .proj-grid{grid-template-columns:1fr 1fr;}
-    .contact-grid{grid-template-columns:1fr;}
-  }
-  @media(max-width:600px){
-    .wrap{padding:0 20px;}
-    .nav{padding:14px 20px;}
-    section{padding:56px 0;}
-    .proj-grid{grid-template-columns:1fr;}
-  }
+    .nav-toggle {
+      display: none;
+    }
 
-  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
-</style>
+    @media(max-width:820px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding: 88px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .status-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .status-chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: 0.04em;
+      padding: 6px 11px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .status-chip .led {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 6px var(--teal);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+      line-height: 1.05;
+      color: var(--text);
+    }
+
+    .hero h1 span {
+      color: var(--amber);
+    }
+
+    .hero .role-line {
+      margin-top: 14px;
+      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      color: var(--text-dim);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+    }
+
+    .hero p.lede {
+      margin-top: 20px;
+      max-width: 52ch;
+      color: var(--text-dim);
+      font-size: 15.5px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      padding: 13px 22px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .15s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: #0A0F1C;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: #ffb84d;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .hero-links {
+      margin-top: 26px;
+      display: flex;
+      gap: 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+    }
+
+    .hero-links a {
+      color: var(--text-faint);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .hero-links a:hover {
+      color: var(--teal);
+      border-color: var(--teal);
+    }
+
+    /* diagram */
+    .diagram-wrap {
+      position: relative;
+      aspect-ratio: 1/1;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .diagram-wrap svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .node-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      fill: var(--text-dim);
+      letter-spacing: 0.02em;
+    }
+
+    .node-sub {
+      font-size: 8.5px;
+      fill: var(--text-faint);
+    }
+
+    .hub-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      fill: var(--text);
+      font-weight: 600;
+    }
+
+    .hub-text-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8.5px;
+      fill: var(--amber);
+      letter-spacing: 0.08em;
+    }
+
+    /* ---------- SECTION shell ---------- */
+    section {
+      padding: 84px 0;
+    }
+
+    .section-head {
+      margin-bottom: 44px;
+      max-width: 640px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+      margin-top: 10px;
+    }
+
+    .section-head p {
+      color: var(--text-dim);
+      margin-top: 12px;
+      font-size: 15px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--line-soft);
+      margin: 0;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-copy p {
+      color: var(--text-dim);
+      font-size: 15.5px;
+      margin: 0 0 16px;
+    }
+
+    .about-copy strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .stat-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+    }
+
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--amber);
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--text-dim);
+      text-align: right;
+    }
+
+    /* ---------- SKILLS ---------- */
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .module {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .module-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    .module h3 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .module-status {
+      color: var(--teal);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 5px 9px;
+      border-radius: 4px;
+      background: var(--panel-2);
+      border: 1px solid var(--line-soft);
+      color: var(--text-dim);
+    }
+
+    .tag.lead {
+      color: var(--amber);
+      border-color: var(--amber-dim);
+    }
+
+    @media(max-width:980px) {
+      .modules {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:600px) {
+      .modules {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ---------- EXPERIENCE ---------- */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      background: linear-gradient(var(--teal), var(--line) 85%);
+    }
+
+    .tl-item {
+      position: relative;
+      padding-bottom: 44px;
+    }
+
+    .tl-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -32px;
+      top: 4px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--ink);
+      border: 2px solid var(--teal);
+    }
+
+    .tl-item.current .tl-dot {
+      background: var(--amber);
+      border-color: var(--amber);
+      box-shadow: 0 0 0 4px rgba(245, 166, 35, 0.15);
+    }
+
+    .tl-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: baseline;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--text-faint);
+      margin-bottom: 6px;
+    }
+
+    .tl-meta .yrs {
+      color: var(--teal);
+    }
+
+    .tl-item.current .tl-meta .yrs {
+      color: var(--amber);
+    }
+
+    .tl-item h3 {
+      font-size: 1.15rem;
+      color: var(--text);
+    }
+
+    .tl-item .company {
+      color: var(--text-dim);
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .tl-item ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--text-dim);
+      font-size: 14.5px;
+    }
+
+    .tl-item li {
+      margin-bottom: 7px;
+    }
+
+    .tl-item li::marker {
+      color: var(--teal);
+    }
+
+    /* ---------- PROJECTS ---------- */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .proj-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+
+    .proj-card:hover {
+      border-color: var(--teal-dim);
+      transform: translateY(-2px);
+    }
+
+    .proj-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .proj-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .proj-card p {
+      color: var(--text-dim);
+      font-size: 13.8px;
+      margin: 0 0 14px;
+      flex: 1;
+    }
+
+    .proj-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .proj-stack span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      background: var(--panel-2);
+      color: var(--text-faint);
+      border: 1px solid var(--line-soft);
+    }
+
+    .proj-role {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--teal);
+      padding-top: 12px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .proj-card.wide {
+      grid-column: span 3;
+    }
+
+    @media(max-width:980px) {
+      .proj-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .proj-card.wide {
+        grid-column: span 2;
+      }
+    }
+
+    @media(max-width:640px) {
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proj-card.wide {
+        grid-column: span 1;
+      }
+    }
+
+    /* ---------- EDUCATION ---------- */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .edu-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .edu-card .yrs {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--teal);
+    }
+
+    .edu-card h3 {
+      margin-top: 8px;
+      font-size: 1.05rem;
+    }
+
+    .edu-card .school {
+      color: var(--text-dim);
+      font-size: 13.5px;
+      margin-top: 4px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .edu-card p.thesis {
+      color: var(--text-faint);
+      font-size: 13px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    @media(max-width:700px) {
+      .edu-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ---------- CONTACT / FOOTER ---------- */
+    footer {
+      border-top: 1px solid var(--line-soft);
+      padding: 70px 0 40px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: end;
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .contact-grid h2 {
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+    }
+
+    .contact-grid p {
+      color: var(--text-dim);
+      margin-top: 14px;
+      max-width: 46ch;
+      font-size: 15px;
+    }
+
+    .contact-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13.5px;
+      border-bottom: 1px solid var(--line-soft);
+      padding-bottom: 14px;
+    }
+
+    .contact-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .contact-list .k {
+      color: var(--text-faint);
+      text-transform: uppercase;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-list a {
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .contact-list a:hover {
+      color: var(--amber);
+    }
+
+    .foot-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 26px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--text-faint);
+    }
+
+    .foot-bottom a {
+      color: var(--text-faint);
+      text-decoration: none;
+    }
+
+    .foot-bottom a:hover {
+      color: var(--teal);
+    }
+
+    @media(max-width:900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .diagram-wrap {
+        max-width: 400px;
+        margin-top: 20px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proj-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:600px) {
+      .wrap {
+        padding: 0 20px;
+      }
+
+      .nav {
+        padding: 14px 20px;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+    }
+  </style>
 </head>
+
 <body>
 
-<header class="site">
-  <nav class="nav">
-    <div class="nav-id"><span class="dot"></span><b>M. Munir</b> <span>/ full-stack-engineering</span></div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Stack</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-    </ul>
-    <a class="nav-cta" href="#contact">Contact →</a>
-  </nav>
-</header>
-
-<main>
-  <section class="hero grid-bg">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <div class="status-row">
-            <span class="status-chip"><span class="led"></span>PRINCIPAL ENGINEER CONSULTANT</span>
-            <span class="status-chip"><span class="led"></span>8+ YRS EXPERIENCE</span>
-            <span class="status-chip"><span class="led"></span>LAHORE, PK</span>
-          </div>
-          <h1>Full-stack engineering for systems that <span>track, verify, and move things.</span></h1>
-          <p class="role-line">Mubasher Munir — Full-stack engineer, Angular-focused, with .NET Core end to end</p>
-          <p class="lede">Eight years designing both the interfaces and the APIs behind them — the dashboards enterprises depend on to see what's happening inside their supply chains, document pipelines, and identity systems, and the ASP.NET Core services that feed them.</p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="assets/imgs/Mubasher-Munir-Resume.pdf" download>↓ Download résumé</a>
-            <a class="btn btn-ghost" href="#contact">Get in touch</a>
-          </div>
-          <div class="hero-links">
-            <a href="https://github.com/Mubasher-Munir" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/mubasher-munir-6a4566137/" target="_blank" rel="noopener">LinkedIn ↗</a>
-            <a href="mailto:sheikh.mubasher.munir@gmail.com">Email ↗</a>
-          </div>
-        </div>
-
-        <div class="diagram-wrap" role="img" aria-label="Diagram showing full-stack engineering — Angular and .NET Core — at the center, connected to five domains: supply chain, healthcare, document AI, identity and SSO, and RPA monitoring.">
-          <svg viewBox="0 0 600 600">
-            <defs>
-              <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#4FD1C5" stop-opacity="0.5"/>
-                <stop offset="100%" stop-color="#4FD1C5" stop-opacity="0.05"/>
-              </linearGradient>
-            </defs>
-
-            <!-- spokes -->
-            <line x1="300" y1="300" x2="300" y2="80"  stroke="#233052" stroke-width="1.4"/>
-            <line x1="300" y1="300" x2="509" y2="232" stroke="#233052" stroke-width="1.4"/>
-            <line x1="300" y1="300" x2="429" y2="478" stroke="#233052" stroke-width="1.4"/>
-            <line x1="300" y1="300" x2="171" y2="478" stroke="#233052" stroke-width="1.4"/>
-            <line x1="300" y1="300" x2="91"  y2="232" stroke="#233052" stroke-width="1.4"/>
-
-            <!-- pulses -->
-            <circle r="3.4" fill="#F5A623">
-              <animate attributeName="cx" values="300;300;300" keyTimes="0;0.001;1" dur="6s" begin="0s" repeatCount="indefinite"/>
-              <animateMotion dur="3s" begin="0s" repeatCount="indefinite" path="M300,300 L300,80 L300,300"/>
-            </circle>
-            <circle r="3.4" fill="#F5A623">
-              <animateMotion dur="3s" begin="0.6s" repeatCount="indefinite" path="M300,300 L509,232 L300,300"/>
-            </circle>
-            <circle r="3.4" fill="#F5A623">
-              <animateMotion dur="3s" begin="1.2s" repeatCount="indefinite" path="M300,300 L429,478 L300,300"/>
-            </circle>
-            <circle r="3.4" fill="#F5A623">
-              <animateMotion dur="3s" begin="1.8s" repeatCount="indefinite" path="M300,300 L171,478 L300,300"/>
-            </circle>
-            <circle r="3.4" fill="#F5A623">
-              <animateMotion dur="3s" begin="2.4s" repeatCount="indefinite" path="M300,300 L91,232 L300,300"/>
-            </circle>
-
-            <!-- outer nodes -->
-            <g>
-              <circle cx="300" cy="80" r="34" fill="#111A2C" stroke="#233052"/>
-              <text x="300" y="76" text-anchor="middle" class="node-label">SUPPLY</text>
-              <text x="300" y="90" text-anchor="middle" class="node-label">CHAIN</text>
-            </g>
-            <g>
-              <circle cx="509" cy="232" r="34" fill="#111A2C" stroke="#233052"/>
-              <text x="509" y="228" text-anchor="middle" class="node-label">HEALTH-</text>
-              <text x="509" y="242" text-anchor="middle" class="node-label">CARE</text>
-            </g>
-            <g>
-              <circle cx="429" cy="478" r="34" fill="#111A2C" stroke="#233052"/>
-              <text x="429" y="474" text-anchor="middle" class="node-label">DOCUMENT</text>
-              <text x="429" y="488" text-anchor="middle" class="node-label">AI</text>
-            </g>
-            <g>
-              <circle cx="171" cy="478" r="34" fill="#111A2C" stroke="#233052"/>
-              <text x="171" y="474" text-anchor="middle" class="node-label">IDENTITY</text>
-              <text x="171" y="488" text-anchor="middle" class="node-label">/ SSO</text>
-            </g>
-            <g>
-              <circle cx="91" cy="232" r="34" fill="#111A2C" stroke="#233052"/>
-              <text x="91" y="228" text-anchor="middle" class="node-label">RPA</text>
-              <text x="91" y="242" text-anchor="middle" class="node-label">MONITOR</text>
-            </g>
-
-            <!-- hub -->
-            <circle cx="300" cy="300" r="58" fill="#0D1526" stroke="#F5A623" stroke-width="1.6"/>
-            <text x="300" y="290" text-anchor="middle" class="hub-text">Full-Stack</text>
-            <text x="300" y="308" text-anchor="middle" class="hub-text-sub">ANGULAR</text>
-            <text x="300" y="320" text-anchor="middle" class="hub-text-sub">+ .NET CORE</text>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="about">
-    <div class="wrap about-grid">
-      <div class="about-copy">
-        <div class="eyebrow">About</div>
-        <h2 style="margin-top:14px;">Full-stack range, Angular-first.</h2>
-        <p style="margin-top:22px;">I'm a <strong>Principal Engineer Consultant</strong> with eight years across the full stack — <strong>Angular</strong>, from version 8 through 18, paired with <strong>ASP.NET Core and C#</strong> on the backend. Angular is where I go deepest, but most of the projects I've owned were mine end to end: UI, API, and the SQL Server schema underneath.</p>
-        <p>That range has taken me through <strong>enterprise supply chain software</strong> (real-time shipment tracking and EDI integration at Systems Limited), <strong>AI-powered document automation and RPA</strong> platforms at OpenBots AI, and a <strong>healthcare eligibility system</strong> I built front to back — Angular UI and ASP.NET Core APIs — for patient records, insurance, and copay logic. Along the way I've led engineering teams across as many as four concurrent products, and set the standards — front-end and API — those teams still build on.</p>
-        <p>Outside the day job, an MPhil in Computer Science let me apply <strong>NLP and deep learning</strong> to a genuinely under-served problem: detecting empathy in Urdu-language text.</p>
-      </div>
-      <div class="stat-panel">
-        <div class="stat-row"><span class="stat-num">8+</span><span class="stat-label">Years in production<br>front-end engineering</span></div>
-        <div class="stat-row"><span class="stat-num">v8–18</span><span class="stat-label">Angular versions shipped<br>in enterprise apps</span></div>
-        <div class="stat-row"><span class="stat-num">4+</span><span class="stat-label">Concurrent enterprise<br>products led at once</span></div>
-        <div class="stat-row"><span class="stat-num">5</span><span class="stat-label">Domains: logistics, health,<br>AI/IDP, RPA, identity</span></div>
-        <div class="stat-row"><span class="stat-num">MPhil</span><span class="stat-label">Computer Science —<br>NLP &amp; deep learning</span></div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="skills" class="grid-bg">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Stack</div>
-        <h2>What's running under the hood</h2>
-        <p>The two halves of the stack I ship end to end, plus the AI/RPA tooling and data layer that sit around them.</p>
-      </div>
-      <div class="modules">
-        <div class="module">
-          <div class="module-head"><span>Frontend</span><span class="module-status">● angular-first</span></div>
-          <h3>Angular ecosystem</h3>
-          <div class="tag-list">
-            <span class="tag lead">Angular (v8–18)</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">RxJS</span>
-            <span class="tag">NgRx</span>
-            <span class="tag">Angular Material</span>
-            <span class="tag">SCSS / CSS3</span>
-          </div>
-        </div>
-        <div class="module">
-          <div class="module-head"><span>Backend</span><span class="module-status">● end-to-end</span></div>
-          <h3>.NET Core</h3>
-          <div class="tag-list">
-            <span class="tag lead">ASP.NET Core</span>
-            <span class="tag">C#</span>
-            <span class="tag">RESTful APIs</span>
-            <span class="tag">Web APIs</span>
-          </div>
-        </div>
-        <div class="module">
-          <div class="module-head"><span>AI / ML</span><span class="module-status">● applied</span></div>
-          <h3>NLP &amp; automation</h3>
-          <div class="tag-list">
-            <span class="tag lead">Python</span>
-            <span class="tag">TensorFlow</span>
-            <span class="tag">NLP</span>
-            <span class="tag">Deep Learning</span>
-            <span class="tag">GPT integrations</span>
-          </div>
-        </div>
-        <div class="module">
-          <div class="module-head"><span>Data &amp; Tools</span><span class="module-status">● support</span></div>
-          <h3>Infra &amp; tooling</h3>
-          <div class="tag-list">
-            <span class="tag">SQL Server</span>
-            <span class="tag">Oracle</span>
-            <span class="tag">UiPath (RPA)</span>
-            <span class="tag">Git / GitHub</span>
-            <span class="tag">Postman</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="experience">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Experience</div>
-        <h2>Career timeline</h2>
-        <p>From an ASP.NET internship to leading front-end architecture on a global logistics platform.</p>
-      </div>
-
-      <div class="timeline">
-        <div class="tl-item current">
-          <span class="tl-dot"></span>
-          <div class="tl-meta"><span class="yrs">2026 — Present</span></div>
-          <h3>Principal Engineer Consultant</h3>
-          <div class="company">Systems Limited</div>
-          <ul>
-            <li>Lead front-end architecture for <strong>PartnerLinQ</strong>, an enterprise supply chain platform serving global logistics operations.</li>
-            <li>Design Angular modules for real-time shipment tracking, EDI/API integration dashboards, and partner onboarding workflows.</li>
-            <li>Set coding standards, run code reviews, and drive performance optimisation across the front-end codebase.</li>
-          </ul>
-        </div>
-
-        <div class="tl-item">
-          <span class="tl-dot"></span>
-          <div class="tl-meta"><span class="yrs">2021 — 2026</span></div>
-          <h3>Lead Software Engineer</h3>
-          <div class="company">OpenBots AI</div>
-          <ul>
-            <li>Led the front-end team across 4+ concurrent enterprise Angular products in AI automation and RPA.</li>
-            <li>Architected an AI-powered document processing platform integrating GPT and IDP services, plus a multi-tenant SSO identity platform.</li>
-            <li>Introduced shared component libraries and coding standards that cut development time across teams.</li>
-          </ul>
-        </div>
-
-        <div class="tl-item">
-          <span class="tl-dot"></span>
-          <div class="tl-meta"><span class="yrs">2019 — 2021</span></div>
-          <h3>Senior Software Engineer</h3>
-          <div class="company">Accelirate</div>
-          <ul>
-            <li>Built the Angular front end for an AI capabilities platform covering computer vision, object detection, and NLP.</li>
-            <li>Developed a Chrome extension for RPA UI targeting; started out on UiPath automating enterprise workflows.</li>
-          </ul>
-        </div>
-
-        <div class="tl-item">
-          <span class="tl-dot"></span>
-          <div class="tl-meta"><span class="yrs">2018 — 2019</span></div>
-          <h3>Associate Software Engineer</h3>
-          <div class="company">Cressettech</div>
-          <ul>
-            <li>Built and managed an e-commerce admin platform for major clothing brands on ASP.NET Core (NopCommerce) — sales, inventory, and delivery.</li>
-          </ul>
-        </div>
-
-        <div class="tl-item">
-          <span class="tl-dot"></span>
-          <div class="tl-meta"><span class="yrs">2017 — 2018</span></div>
-          <h3>Intern Software Engineer</h3>
-          <div class="company">Solution Matrix</div>
-          <ul>
-            <li>Gained hands-on .NET/C# experience and explored Umbraco CMS for content-driven web applications.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="projects" class="grid-bg">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Projects</div>
-        <h2>Systems I've shipped</h2>
-        <p>Six projects spanning logistics, healthcare, document intelligence, identity, and applied research.</p>
-      </div>
-      <div class="proj-grid">
-        <div class="proj-card wide">
-          <div class="proj-tag">Supply chain SaaS</div>
-          <h3>PartnerLinQ</h3>
-          <p>Enterprise supply chain platform for global logistics — real-time shipment tracking, EDI integration, and partner onboarding, built to scale across carriers and trading partners.</p>
-          <div class="proj-stack"><span>Angular 17</span><span>ASP.NET Core</span><span>SQL Server</span></div>
-          <div class="proj-role">ROLE — Principal Front-End Engineer</div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-tag">Healthcare</div>
-          <h3>Patient Eligibility &amp; Insurance Platform</h3>
-          <p>Full-stack platform managing patient eligibility, insurance data, and copay computation, with auto-filled document generation for billing.</p>
-          <div class="proj-stack"><span>Angular</span><span>ASP.NET Core</span><span>SQL Server</span></div>
-          <div class="proj-role">ROLE — Full-Stack Developer</div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-tag">Document AI</div>
-          <h3>Intelligent Document Processing</h3>
-          <p>GPT + IDP-powered platform extracting structured data from documents — upload flows, AI results display, and validation workflows.</p>
-          <div class="proj-stack"><span>Angular</span><span>ASP.NET Core</span><span>Python</span><span>GPT</span></div>
-          <div class="proj-role">ROLE — Lead Front-End Developer</div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-tag">Identity</div>
-          <h3>Members — SSO Platform</h3>
-          <p>Multi-tenant identity platform with Single Sign-On across multiple enterprise apps, gated by subscription tier.</p>
-          <div class="proj-stack"><span>Angular</span><span>ASP.NET Core</span><span>SQL Server</span></div>
-          <div class="proj-role">ROLE — Lead Front-End Developer</div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-tag">RPA monitoring</div>
-          <h3>Cloud Server</h3>
-          <p>Real-time job tracking and automation monitoring dashboard for RPA workflows across a fleet of bots.</p>
-          <div class="proj-stack"><span>Angular</span><span>ASP.NET Core</span><span>SQL Server</span></div>
-          <div class="proj-role">ROLE — Front-End Developer</div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-tag">Applied research</div>
-          <h3>Empathy Detection in Urdu</h3>
-          <p>MPhil thesis: an NLP solution classifying empathy from Urdu-language text using custom ML/deep learning models on a novel dataset. Published, PUCIT.</p>
-          <div class="proj-stack"><span>Python</span><span>NLP</span><span>Deep Learning</span><span>Jupyter</span></div>
-          <div class="proj-role">ROLE — Researcher / Author</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="education">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Education</div>
-        <h2>Academic background</h2>
-      </div>
-      <div class="edu-grid">
-        <div class="edu-card">
-          <div class="yrs">2020 — 2024</div>
-          <h3>MPhil in Computer Science</h3>
-          <div class="school">Punjab University (PUCIT), Lahore</div>
-          <p class="thesis">Thesis — Empathy Detection in Urdu Language using NLP &amp; Deep Learning Models</p>
-        </div>
-        <div class="edu-card">
-          <div class="yrs">2014 — 2018</div>
-          <h3>BS-IT (Hons)</h3>
-          <div class="school">Punjab University (PUCIT), Lahore</div>
-          <p class="thesis">CGPA: 3.2</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer id="contact" class="grid-bg">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div>
-        <div class="eyebrow">Contact</div>
-        <h2 style="margin-top:14px;">Let's build the front end your product deserves.</h2>
-        <p>Open to Principal / Lead Angular and full-stack roles, and consulting engagements across supply chain, health tech, and AI-driven products.</p>
-        <div class="hero-cta" style="margin-top:26px;">
-          <a class="btn btn-primary" href="mailto:sheikh.mubasher.munir@gmail.com">Email me</a>
-          <a class="btn btn-ghost" href="assets/imgs/Mubasher-Munir-Resume.pdf" download>↓ Résumé (PDF)</a>
-        </div>
-      </div>
-      <ul class="contact-list">
-        <li><span class="k">Email</span><a href="mailto:sheikh.mubasher.munir@gmail.com">sheikh.mubasher.munir@gmail.com</a></li>
-        <li><span class="k">Phone</span><a href="tel:+923246275515">+92 324 6275515</a></li>
-        <li><span class="k">Location</span><span>Lahore, Pakistan</span></li>
-        <li><span class="k">GitHub</span><a href="https://github.com/Mubasher-Munir" target="_blank" rel="noopener">github.com/Mubasher-Munir</a></li>
-        <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/mubasher-munir-6a4566137/" target="_blank" rel="noopener">in/mubasher-munir</a></li>
+  <header class="site">
+    <nav class="nav">
+      <div class="nav-id"><span class="dot"></span><b>M. Munir</b> <span>/ full-stack-engineering</span></div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Stack</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
       </ul>
+      <a class="nav-cta" href="#contact">Contact →</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero grid-bg">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="status-row">
+              <span class="status-chip"><span class="led"></span>PRINCIPAL ENGINEER CONSULTANT</span>
+              <span class="status-chip"><span class="led"></span>8+ YRS EXPERIENCE</span>
+              <span class="status-chip"><span class="led"></span>LAHORE, PK</span>
+            </div>
+            <h1>Full-stack engineering for systems that <span>track, verify, and move things.</span></h1>
+            <p class="role-line">Mubasher Munir — Full-stack engineer, Angular-focused, with .NET Core end to end</p>
+            <p class="lede">Eight years designing both the interfaces and the APIs behind them — the dashboards
+              enterprises depend on to see what's happening inside their supply chains, document pipelines, and identity
+              systems, and the ASP.NET Core services that feed them.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="assets/imgs/Mubasher-Munir-Resume.pdf" download>↓ Download résumé</a>
+              <a class="btn btn-ghost" href="#contact">Get in touch</a>
+            </div>
+            <div class="hero-links">
+              <a href="https://github.com/Mubasher-Munir" target="_blank" rel="noopener">GitHub ↗</a>
+              <a href="https://www.linkedin.com/in/mubasher-munir-6a4566137/" target="_blank" rel="noopener">LinkedIn
+                ↗</a>
+              <a href="mailto:sheikh.mubasher.munir@gmail.com">Email ↗</a>
+            </div>
+          </div>
+
+          <div class="diagram-wrap" role="img"
+            aria-label="Diagram showing full-stack engineering — Angular and .NET Core — at the center, connected to five domains: supply chain, healthcare, document AI, identity and SSO, and RPA monitoring.">
+            <svg viewBox="0 0 600 600">
+              <defs>
+                <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#4FD1C5" stop-opacity="0.5" />
+                  <stop offset="100%" stop-color="#4FD1C5" stop-opacity="0.05" />
+                </linearGradient>
+              </defs>
+
+              <!-- spokes -->
+              <line x1="300" y1="300" x2="300" y2="80" stroke="#233052" stroke-width="1.4" />
+              <line x1="300" y1="300" x2="509" y2="232" stroke="#233052" stroke-width="1.4" />
+              <line x1="300" y1="300" x2="429" y2="478" stroke="#233052" stroke-width="1.4" />
+              <line x1="300" y1="300" x2="171" y2="478" stroke="#233052" stroke-width="1.4" />
+              <line x1="300" y1="300" x2="91" y2="232" stroke="#233052" stroke-width="1.4" />
+
+              <!-- pulses -->
+              <circle r="3.4" fill="#F5A623">
+                <animate attributeName="cx" values="300;300;300" keyTimes="0;0.001;1" dur="6s" begin="0s"
+                  repeatCount="indefinite" />
+                <animateMotion dur="3s" begin="0s" repeatCount="indefinite" path="M300,300 L300,80 L300,300" />
+              </circle>
+              <circle r="3.4" fill="#F5A623">
+                <animateMotion dur="3s" begin="0.6s" repeatCount="indefinite" path="M300,300 L509,232 L300,300" />
+              </circle>
+              <circle r="3.4" fill="#F5A623">
+                <animateMotion dur="3s" begin="1.2s" repeatCount="indefinite" path="M300,300 L429,478 L300,300" />
+              </circle>
+              <circle r="3.4" fill="#F5A623">
+                <animateMotion dur="3s" begin="1.8s" repeatCount="indefinite" path="M300,300 L171,478 L300,300" />
+              </circle>
+              <circle r="3.4" fill="#F5A623">
+                <animateMotion dur="3s" begin="2.4s" repeatCount="indefinite" path="M300,300 L91,232 L300,300" />
+              </circle>
+
+              <!-- outer nodes -->
+              <g>
+                <circle cx="300" cy="80" r="34" fill="#111A2C" stroke="#233052" />
+                <text x="300" y="76" text-anchor="middle" class="node-label">SUPPLY</text>
+                <text x="300" y="90" text-anchor="middle" class="node-label">CHAIN</text>
+              </g>
+              <g>
+                <circle cx="509" cy="232" r="34" fill="#111A2C" stroke="#233052" />
+                <text x="509" y="228" text-anchor="middle" class="node-label">HEALTH-</text>
+                <text x="509" y="242" text-anchor="middle" class="node-label">CARE</text>
+              </g>
+              <g>
+                <circle cx="429" cy="478" r="34" fill="#111A2C" stroke="#233052" />
+                <text x="429" y="474" text-anchor="middle" class="node-label">DOCUMENT</text>
+                <text x="429" y="488" text-anchor="middle" class="node-label">AI</text>
+              </g>
+              <g>
+                <circle cx="171" cy="478" r="34" fill="#111A2C" stroke="#233052" />
+                <text x="171" y="474" text-anchor="middle" class="node-label">IDENTITY</text>
+                <text x="171" y="488" text-anchor="middle" class="node-label">/ SSO</text>
+              </g>
+              <g>
+                <circle cx="91" cy="232" r="34" fill="#111A2C" stroke="#233052" />
+                <text x="91" y="228" text-anchor="middle" class="node-label">RPA</text>
+                <text x="91" y="242" text-anchor="middle" class="node-label">MONITOR</text>
+              </g>
+
+              <!-- hub -->
+              <circle cx="300" cy="300" r="58" fill="#0D1526" stroke="#F5A623" stroke-width="1.6" />
+              <text x="300" y="290" text-anchor="middle" class="hub-text">Full-Stack</text>
+              <text x="300" y="308" text-anchor="middle" class="hub-text-sub">ANGULAR</text>
+              <text x="300" y="320" text-anchor="middle" class="hub-text-sub">+ .NET CORE</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <div class="eyebrow">About</div>
+          <h2 style="margin-top:14px;">Full-stack range, Angular-first.</h2>
+          <p style="margin-top:22px;">I'm a <strong>Principal Engineer Consultant</strong> with eight years across the
+            full stack — <strong>Angular</strong>, from version 8 through 18, paired with <strong>ASP.NET Core and
+              C#</strong> on the backend. Angular is where I go deepest, but most of the projects I've owned were mine
+            end to end: UI, API, and the SQL Server schema underneath.</p>
+          <p>That range has taken me through <strong>enterprise supply chain software</strong> (real-time shipment
+            tracking and EDI integration at Systems Limited), <strong>AI-powered document automation and RPA</strong>
+            platforms at OpenBots AI, and a <strong>healthcare eligibility system</strong> I built front to back —
+            Angular UI and ASP.NET Core APIs — for patient records, insurance, and copay logic. Along the way I've led
+            engineering teams across as many as four concurrent products, and set the standards — front-end and API —
+            those teams still build on.</p>
+          <p>Outside the day job, an MPhil in Computer Science let me apply <strong>NLP and deep learning</strong> to a
+            genuinely under-served problem: detecting empathy in Urdu-language text.</p>
+        </div>
+        <div class="stat-panel">
+          <div class="stat-row"><span class="stat-num">8+</span><span class="stat-label">Years in
+              production<br>front-end engineering</span></div>
+          <div class="stat-row"><span class="stat-num">v8–18</span><span class="stat-label">Angular versions
+              shipped<br>in enterprise apps</span></div>
+          <div class="stat-row"><span class="stat-num">4+</span><span class="stat-label">Concurrent
+              enterprise<br>products led at once</span></div>
+          <div class="stat-row"><span class="stat-num">5</span><span class="stat-label">Domains: logistics,
+              health,<br>AI/IDP, RPA, identity</span></div>
+          <div class="stat-row"><span class="stat-num">MPhil</span><span class="stat-label">Computer Science —<br>NLP
+              &amp; deep learning</span></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="skills" class="grid-bg">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Stack</div>
+          <h2>What's running under the hood</h2>
+          <p>The two halves of the stack I ship end to end, plus the AI/RPA tooling and data layer that sit around them.
+          </p>
+        </div>
+        <div class="modules">
+          <div class="module">
+            <div class="module-head"><span>Frontend</span><span class="module-status">● angular-first</span></div>
+            <h3>Angular ecosystem</h3>
+            <div class="tag-list">
+              <span class="tag lead">Angular (v8–18)</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">RxJS</span>
+              <span class="tag">NgRx</span>
+              <span class="tag">Angular Material</span>
+              <span class="tag">SCSS / CSS3</span>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-head"><span>Backend</span><span class="module-status">● end-to-end</span></div>
+            <h3>.NET Core</h3>
+            <div class="tag-list">
+              <span class="tag lead">ASP.NET Core</span>
+              <span class="tag">C#</span>
+              <span class="tag">RESTful APIs</span>
+              <span class="tag">Web APIs</span>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-head"><span>AI / ML</span><span class="module-status">● applied</span></div>
+            <h3>NLP &amp; automation</h3>
+            <div class="tag-list">
+              <span class="tag lead">Python</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">NLP</span>
+              <span class="tag">Deep Learning</span>
+              <span class="tag">GPT integrations</span>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-head"><span>Data &amp; Tools</span><span class="module-status">● support</span></div>
+            <h3>Infra &amp; tooling</h3>
+            <div class="tag-list">
+              <span class="tag">SQL Server</span>
+              <span class="tag">Oracle</span>
+              <span class="tag">UiPath (RPA)</span>
+              <span class="tag">Git / GitHub</span>
+              <span class="tag">Postman</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Experience</div>
+          <h2>Career timeline</h2>
+          <p>From an ASP.NET internship to leading front-end architecture on a global logistics platform.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-item current">
+            <span class="tl-dot"></span>
+            <div class="tl-meta"><span class="yrs">2026 — Present</span></div>
+            <h3>Principal Engineer Consultant</h3>
+            <div class="company">Systems Limited</div>
+            <ul>
+              <li>Lead front-end architecture for <strong>PartnerLinQ</strong>, an enterprise supply chain platform
+                serving global logistics operations.</li>
+              <li>Design Angular modules for real-time shipment tracking, EDI/API integration dashboards, and partner
+                onboarding workflows.</li>
+              <li>Set coding standards, run code reviews, and drive performance optimisation across the front-end
+                codebase.</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-meta"><span class="yrs">2021 — 2026</span></div>
+            <h3>Lead Software Engineer</h3>
+            <div class="company">OpenBots AI</div>
+            <ul>
+              <li>Led the front-end team across 4+ concurrent enterprise Angular products in AI automation and RPA.</li>
+              <li>Architected an AI-powered document processing platform integrating GPT and IDP services, plus a
+                multi-tenant SSO identity platform.</li>
+              <li>Introduced shared component libraries and coding standards that cut development time across teams.
+              </li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-meta"><span class="yrs">2019 — 2021</span></div>
+            <h3>Senior Software Engineer</h3>
+            <div class="company">Accelirate</div>
+            <ul>
+              <li>Built the Angular front end for an AI capabilities platform covering computer vision, object
+                detection, and NLP.</li>
+              <li>Developed a Chrome extension for RPA UI targeting; started out on UiPath automating enterprise
+                workflows.</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-meta"><span class="yrs">2018 — 2019</span></div>
+            <h3>Associate Software Engineer</h3>
+            <div class="company">Cressettech</div>
+            <ul>
+              <li>Built and managed an e-commerce admin platform for major clothing brands on ASP.NET Core (NopCommerce)
+                — sales, inventory, and delivery.</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-meta"><span class="yrs">2017 — 2018</span></div>
+            <h3>Intern Software Engineer</h3>
+            <div class="company">Solution Matrix</div>
+            <ul>
+              <li>Gained hands-on .NET/C# experience and explored Umbraco CMS for content-driven web applications.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="projects" class="grid-bg">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Projects</div>
+          <h2>Systems I've shipped</h2>
+          <p>Six projects spanning logistics, healthcare, document intelligence, identity, and applied research.</p>
+        </div>
+        <div class="proj-grid">
+          <div class="proj-card wide">
+            <div class="proj-tag">Supply chain SaaS</div>
+            <h3>PartnerLinQ</h3>
+            <p>Enterprise supply chain platform for global logistics — real-time shipment tracking, EDI integration, and
+              partner onboarding, built to scale across carriers and trading partners.</p>
+            <div class="proj-stack"><span>Angular 17</span><span>ASP.NET Core</span><span>SQL Server</span></div>
+            <div class="proj-role">ROLE — Principal Engineer Consultant</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-tag">Healthcare</div>
+            <h3>Patient Eligibility &amp; Insurance Platform</h3>
+            <p>Full-stack platform managing patient eligibility, insurance data, and copay computation, with auto-filled
+              document generation for billing.</p>
+            <div class="proj-stack"><span>Angular</span><span>ASP.NET Core</span><span>SQL Server</span></div>
+            <div class="proj-role">ROLE — Full-Stack Developer</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-tag">Document AI</div>
+            <h3>Intelligent Document Processing</h3>
+            <p>GPT + IDP-powered platform extracting structured data from documents — upload flows, AI results display,
+              and validation workflows.</p>
+            <div class="proj-stack"><span>Angular</span><span>ASP.NET Core</span><span>Python</span><span>GPT</span>
+            </div>
+            <div class="proj-role">ROLE — Lead Front-End Developer</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-tag">Identity</div>
+            <h3>Members — SSO Platform</h3>
+            <p>Multi-tenant identity platform with Single Sign-On across multiple enterprise apps, gated by subscription
+              tier.</p>
+            <div class="proj-stack"><span>Angular</span><span>ASP.NET Core</span><span>SQL Server</span></div>
+            <div class="proj-role">ROLE — Lead Front-End Developer</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-tag">RPA monitoring</div>
+            <h3>Cloud Server</h3>
+            <p>Real-time job tracking and automation monitoring dashboard for RPA workflows across a fleet of bots.</p>
+            <div class="proj-stack"><span>Angular</span><span>ASP.NET Core</span><span>SQL Server</span></div>
+            <div class="proj-role">ROLE — Front-End Developer</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-tag">Applied research</div>
+            <h3>Empathy Detection in Urdu</h3>
+            <p>MPhil thesis: an NLP solution classifying empathy from Urdu-language text using custom ML/deep learning
+              models on a novel dataset. Published, PUCIT.</p>
+            <div class="proj-stack"><span>Python</span><span>NLP</span><span>Deep Learning</span><span>Jupyter</span>
+            </div>
+            <div class="proj-role">ROLE — Researcher / Author</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="education">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Education</div>
+          <h2>Academic background</h2>
+        </div>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="yrs">2020 — 2024</div>
+            <h3>MPhil in Computer Science</h3>
+            <div class="school">Punjab University (PUCIT), Lahore</div>
+            <p class="thesis">Thesis — Empathy Detection in Urdu Language using NLP &amp; Deep Learning Models</p>
+          </div>
+          <div class="edu-card">
+            <div class="yrs">2014 — 2018</div>
+            <h3>BS-IT (Hons)</h3>
+            <div class="school">Punjab University (PUCIT), Lahore</div>
+            <p class="thesis">CGPA: 3.2</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="grid-bg">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2 style="margin-top:14px;">Let's build the front end your product deserves.</h2>
+          <p>Open to Principal / Lead Angular and full-stack roles, and consulting engagements across supply chain,
+            health tech, and AI-driven products.</p>
+          <div class="hero-cta" style="margin-top:26px;">
+            <a class="btn btn-primary" href="mailto:sheikh.mubasher.munir@gmail.com">Email me</a>
+            <a class="btn btn-ghost" href="assets/imgs/Mubasher-Munir-Resume.pdf" download>↓ Résumé (PDF)</a>
+          </div>
+        </div>
+        <ul class="contact-list">
+          <li><span class="k">Email</span><a
+              href="mailto:sheikh.mubasher.munir@gmail.com">sheikh.mubasher.munir@gmail.com</a></li>
+          <li><span class="k">Phone</span><a href="tel:+923246275515">+92 324 6275515</a></li>
+          <li><span class="k">Location</span><span>Lahore, Pakistan</span></li>
+          <li><span class="k">GitHub</span><a href="https://github.com/Mubasher-Munir" target="_blank"
+              rel="noopener">github.com/Mubasher-Munir</a></li>
+          <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/mubasher-munir-6a4566137/"
+              target="_blank" rel="noopener">in/mubasher-munir</a></li>
+        </ul>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Mubasher Munir</span>
+        <span>Built with the same full-stack attention to detail — hand-coded HTML/CSS.</span>
+      </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Mubasher Munir</span>
-      <span>Built with the same full-stack attention to detail — hand-coded HTML/CSS.</span>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
+
 </html>
